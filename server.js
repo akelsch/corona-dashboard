@@ -3,11 +3,11 @@ import * as fs from 'fs'
 import * as http from 'http'
 import * as path from 'path'
 import * as querystring from 'querystring'
-import { mapData } from './map-data.js'
+// import { mapData } from './map-data.js'
 import { douglasPeucker, webMercator } from './algorithms.js'
 
-const hostname = '127.0.0.1'
-const port = 3000
+const HOST = '0.0.0.0'
+const PORT = 3000
 
 let rootDir
 
@@ -21,8 +21,8 @@ if (process.argv.length === 2) {
   process.exit(2)
 }
 
-http.createServer(handleRequest).listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
+http.createServer(handleRequest).listen(PORT, HOST, () => {
+  console.log(`Server running at http://${HOST}:${PORT}/`)
 })
 
 function handleRequest (request, response) {
@@ -47,10 +47,11 @@ function handleRequest (request, response) {
 function serveGeodata (response, queryParams) {
   const { BL_ID: stateId, resolution, zoom } = queryParams
 
-  const geodata = mapData.features.filter(elem => elem.attributes.BL_ID === stateId || stateId === '0')
-    .flatMap(elem => elem.geometry.rings)
-    .map(ring => ring.map(([long, lat]) => webMercator(long, lat, zoom)))
-    .map(ring => applyResolution(ring, resolution))
+  // const geodata = mapData.features.filter(elem => elem.attributes.BL_ID === stateId || stateId === '0')
+  //   .flatMap(elem => elem.geometry.rings)
+  //   .map(ring => ring.map(([long, lat]) => webMercator(long, lat, zoom)))
+  //   .map(ring => applyResolution(ring, resolution))
+  const geodata = {}
 
   response.setHeader('Content-Type', 'application/json')
   response.end(JSON.stringify(geodata))
