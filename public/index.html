@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartenserver</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Kartenserver</h1>
+
+  <form action="/mapdata" method="get" id="form">
+    <div>
+      <label for="stateId">Bundesland:</label>
+      <select name="BL_ID" id="stateId">
+        <option value="0">alle</option>
+        <option value="8">Baden-Württemberg</option>
+        <option value="9">Bayern</option>
+        <option value="11">Berlin</option>
+        <option value="12">Brandenburg</option>
+        <option value="4">Bremen</option>
+        <option value="2">Hamburg</option>
+        <option value="6">Hessen</option>
+        <option value="13">Mecklenburg-Vorpommern</option>
+        <option value="3">Niedersachsen</option>
+        <option value="5">Nordrhein-Westfalen</option>
+        <option value="7">Rheinland-Pfalz</option>
+        <option value="10" selected>Saarland</option>
+        <option value="15">Sachsen-Anhalt</option>
+        <option value="14">Sachsen</option>
+        <option value="1">Schleswig-Holstein</option>
+        <option value="16">Thüringen</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="resolution">Auflösung:</label>
+      <select name="resolution" id="resolution">
+        <option value="high">Hoch</option>
+        <option value="medium">Mittel</option>
+        <option value="low">Niedrig</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="zoom">Zoomlevel:</label>
+      <input type="number" name="zoom" id="zoom" value="3" min="0" max="20">
+    </div>
+
+    <button type="submit">Absenden</button>
+  </form>
+
+  <div>
+    <p>Generierte URL: <a href="#" target="_blank" rel="noopener noreferrer" id="form-url"></a></p>
+  </div>
+
+  <svg height="800" viewBox="0 0 125 100" id="map"></svg>
+
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>
