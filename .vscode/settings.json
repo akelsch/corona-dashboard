@@ -6,11 +6,5 @@
   "eslint.enable": false,
   "standard.enable": true,
   "standard.autoFixOnSave": true,
-  "files.exclude": {
-    "**/.git": true,
-    "intermediate/": true,
-    "build/": true,
-    "**/node_modules/": true
-  },
   "liveServer.settings.port": 8081
 }
