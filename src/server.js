@@ -1,17 +1,37 @@
 // @ts-check
 import express from 'express'
+import typeorm from 'typeorm'
+
 import { mapData } from './map-data.js'
 import { douglasPeucker, webMercator } from './algorithms.js'
+import { initDatabase } from './db.js'
+import { Post } from './model/Post.js'
+
+const { getConnection } = typeorm
 
 const app = express()
 const HOST = '0.0.0.0'
 const PORT = 3000
+
+initDatabase()
 
 app.use(express.static('public'))
 
 app.get('/mapdata', (req, res) => {
   const queryParams = req.query
   res.json(adjustMapdata(queryParams))
+})
+
+app.get('/hi', async (req, res) => {
+  const postRepository = getConnection().getRepository(Post)
+
+  const post = new Post()
+  post.title = 'ajhsdjkhasjdkajks'
+  post.text = 'ok.'
+  postRepository.save(post)
+
+  const allPosts = await postRepository.find()
+  res.json(allPosts)
 })
 
 app.listen(PORT, HOST, () => {
