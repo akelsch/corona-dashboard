@@ -5,7 +5,7 @@ import typeorm from 'typeorm'
 import { mapData } from './map-data.js'
 import { douglasPeucker, webMercator } from './algorithms.js'
 import { initDatabase } from './db.js'
-import { Post } from './model/Post.js'
+import { GeoData } from './model/GeoData.js'
 
 const { getConnection } = typeorm
 
@@ -23,15 +23,16 @@ app.get('/mapdata', (req, res) => {
 })
 
 app.get('/hi', async (req, res) => {
-  const postRepository = getConnection().getRepository(Post)
+  const geodataRepository = getConnection().getRepository(GeoData)
 
-  const post = new Post()
-  post.title = 'ajhsdjkhasjdkajks'
-  post.text = 'ok.'
-  postRepository.save(post)
+  const geodata = new GeoData()
+  geodata.countyId = 42
+  geodata.objectId = 24
+  geodata.coordinates = 77
+  geodataRepository.save(geodata)
 
-  const allPosts = await postRepository.find()
-  res.json(allPosts)
+  const allGeodata = await geodataRepository.find()
+  res.json(allGeodata)
 })
 
 app.listen(PORT, HOST, () => {

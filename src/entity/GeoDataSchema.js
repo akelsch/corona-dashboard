@@ -1,19 +1,25 @@
 import typeorm from 'typeorm'
-import { Category } from '../model/Category.js'
+import { GeoData } from '../model/GeoData.js'
 
 const { EntitySchema } = typeorm
 
 export default new EntitySchema({
-  name: 'Category',
-  target: Category,
+  name: 'GeoData',
+  target: GeoData,
   columns: {
     id: {
       primary: true,
       type: 'int',
       generated: true
     },
-    name: {
-      type: 'varchar'
+    countyId: {
+      type: 'int'
+    },
+    objectId: {
+      type: 'int'
+    },
+    coordinates: {
+      type: 'int'
     }
   }
 })

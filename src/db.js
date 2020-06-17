@@ -1,7 +1,8 @@
 import typeorm from 'typeorm'
 
-import postSchema from './entity/PostSchema.js'
-import categorySchema from './entity/CategorySchema.js'
+import attributesSchema from './entity/AttributesSchema.js'
+import geoDataSchema from './entity/GeoDataSchema.js'
+import guidSchema from './entity/GUIDSchema.js'
 
 export function initDatabase () {
   typeorm.createConnection({
@@ -14,8 +15,9 @@ export function initDatabase () {
     synchronize: true,
     logging: false,
     entities: [
-      postSchema,
-      categorySchema
+      attributesSchema,
+      geoDataSchema,
+      guidSchema
     ]
   }).catch(function (error) {
     console.log('Error: ', error)
