@@ -1,17 +1,38 @@
 // @ts-check
 import express from 'express'
+import typeorm from 'typeorm'
+
 import { mapData } from './map-data.js'
 import { douglasPeucker, webMercator } from './algorithms.js'
+import { initDatabase } from './db.js'
+import { GeoData } from './model/GeoData.js'
+
+const { getConnection } = typeorm
 
 const app = express()
 const HOST = '0.0.0.0'
 const PORT = 3000
+
+initDatabase()
 
 app.use(express.static('public'))
 
 app.get('/mapdata', (req, res) => {
   const queryParams = req.query
   res.json(adjustMapdata(queryParams))
+})
+
+app.get('/hi', async (req, res) => {
+  const geodataRepository = getConnection().getRepository(GeoData)
+
+  const geodata = new GeoData()
+  geodata.countyId = 42
+  geodata.objectId = 24
+  geodata.coordinates = 77
+  geodataRepository.save(geodata)
+
+  const allGeodata = await geodataRepository.find()
+  res.json(allGeodata)
 })
 
 app.listen(PORT, HOST, () => {
