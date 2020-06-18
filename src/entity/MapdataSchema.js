@@ -1,27 +1,24 @@
 import typeorm from 'typeorm'
-import { GUID } from '../model/GUID.js'
+import { Mapdata } from '../model/Mapdata.js'
 
 const { EntitySchema } = typeorm
 
 export default new EntitySchema({
-  name: 'GUID',
-  target: GUID,
+  name: 'Mapdata',
+  target: Mapdata,
   columns: {
     id: {
       primary: true,
       type: 'int',
       generated: true
     },
-    guid: {
+    countyId: {
       type: 'int'
     },
-    federalStateId: {
+    objectId: {
       type: 'int'
     },
-    resolution: {
-      type: 'varchar'
-    },
-    zoom: {
+    coordinates: {
       type: 'int'
     }
   }

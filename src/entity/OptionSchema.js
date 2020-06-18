@@ -1,24 +1,27 @@
 import typeorm from 'typeorm'
-import { GeoData } from '../model/GeoData.js'
+import { Option } from '../model/Option.js'
 
 const { EntitySchema } = typeorm
 
 export default new EntitySchema({
-  name: 'GeoData',
-  target: GeoData,
+  name: 'Option',
+  target: Option,
   columns: {
     id: {
       primary: true,
       type: 'int',
       generated: true
     },
-    countyId: {
+    guid: {
       type: 'int'
     },
-    objectId: {
+    federalStateId: {
       type: 'int'
     },
-    coordinates: {
+    resolution: {
+      type: 'varchar'
+    },
+    zoom: {
       type: 'int'
     }
   }

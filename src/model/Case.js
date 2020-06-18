@@ -1,4 +1,4 @@
-export class Attributes {
+export class Case {
   constructor (id, objectId, deathRate, casesPer100k, federalState, countyId, county, lastUpdate, cases7Per100k, recovered) {
     this.id = id
     this.objectId = objectId

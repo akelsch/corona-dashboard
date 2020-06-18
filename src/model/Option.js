@@ -1,4 +1,4 @@
-export class GUID {
+export class Option {
   constructor (id, guid, federalStateId, resolution, zoom) {
     this.id = id
     this.guid = guid

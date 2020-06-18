@@ -1,22 +1,22 @@
 import express from 'express'
 import typeorm from 'typeorm'
 
-import { GeoData } from '../model/GeoData.js'
+import { Mapdata } from '../model/Mapdata.js'
 
 const router = express.Router()
 const { getConnection } = typeorm
 
 router.get('/', async (req, res) => {
-  const geodataRepository = getConnection().getRepository(GeoData)
+  const mapdataRepository = getConnection().getRepository(Mapdata)
 
-  const geodata = new GeoData()
-  geodata.countyId = 42
-  geodata.objectId = 24
-  geodata.coordinates = 77
-  geodataRepository.save(geodata)
+  const mapdata = new Mapdata()
+  mapdata.countyId = 42
+  mapdata.objectId = 24
+  mapdata.coordinates = 77
+  mapdataRepository.save(mapdata)
 
-  const allGeodata = await geodataRepository.find()
-  res.json(allGeodata)
+  const allMapdata = await mapdataRepository.find()
+  res.json(allMapdata)
 })
 
 export default router

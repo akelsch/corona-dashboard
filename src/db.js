@@ -1,8 +1,8 @@
 import typeorm from 'typeorm'
 
-import attributesSchema from './entity/AttributesSchema.js'
-import geoDataSchema from './entity/GeoDataSchema.js'
-import guidSchema from './entity/GUIDSchema.js'
+import mapdataSchema from './entity/MapdataSchema.js'
+import caseSchema from './entity/CaseSchema.js'
+import optionSchema from './entity/OptionSchema.js'
 
 export default typeorm.createConnection({
   type: 'postgres',
@@ -14,9 +14,9 @@ export default typeorm.createConnection({
   synchronize: true,
   logging: false,
   entities: [
-    attributesSchema,
-    geoDataSchema,
-    guidSchema
+    mapdataSchema,
+    caseSchema,
+    optionSchema
   ]
 }).catch(function (error) {
   console.log('Error: ', error)

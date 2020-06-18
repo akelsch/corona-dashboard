@@ -1,11 +1,11 @@
 import typeorm from 'typeorm'
-import { Attributes } from '../model/Attributes.js'
+import { Case } from '../model/Case.js'
 
 const { EntitySchema } = typeorm
 
 export default new EntitySchema({
-  name: 'Attributes',
-  target: Attributes,
+  name: 'Case',
+  target: Case,
   columns: {
     id: {
       primary: true,

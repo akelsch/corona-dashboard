@@ -1,4 +1,4 @@
-export class GeoData {
+export class Mapdata {
   constructor (id, countyId, objectId, coordinates) {
     this.id = id
     this.countyId = countyId
