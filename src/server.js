@@ -5,8 +5,7 @@ import casesRouter from './routes/cases.js'
 import optionsRouter from './routes/options.js'
 import testRouter from './routes/test.js'
 
-import { initDatabase } from './db.js'
-initDatabase()
+import './db.js'
 
 const app = express()
 const HOST = '0.0.0.0'
