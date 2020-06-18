@@ -7,13 +7,10 @@ export default new EntitySchema({
   name: 'Option',
   target: Option,
   columns: {
-    id: {
-      primary: true,
-      type: 'int',
-      generated: true
-    },
     guid: {
-      type: 'int'
+      primary: true,
+      type: 'uuid',
+      generated: true
     },
     federalStateId: {
       type: 'int'

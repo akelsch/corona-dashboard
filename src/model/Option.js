@@ -1,6 +1,5 @@
 export class Option {
-  constructor (id, guid, federalStateId, resolution, zoom) {
-    this.id = id
+  constructor (guid, federalStateId, resolution, zoom) {
     this.guid = guid
     this.federalStateId = federalStateId
     this.resolution = resolution

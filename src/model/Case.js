@@ -1,6 +1,5 @@
 export class Case {
-  constructor (id, objectId, deathRate, casesPer100k, federalState, countyId, county, lastUpdate, cases7Per100k, recovered) {
-    this.id = id
+  constructor (objectId, deathRate, casesPer100k, federalState, countyId, county, lastUpdate, cases7Per100k, recovered) {
     this.objectId = objectId
     this.deathRate = deathRate
     this.casesPer100k = casesPer100k

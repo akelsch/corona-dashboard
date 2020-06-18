@@ -7,12 +7,8 @@ export default new EntitySchema({
   name: 'Case',
   target: Case,
   columns: {
-    id: {
-      primary: true,
-      type: 'int',
-      generated: true
-    },
     objectId: {
+      primary: true,
       type: 'int'
     },
     deathRate: {
