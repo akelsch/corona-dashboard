@@ -1,8 +1,7 @@
 export class Mapdata {
-  constructor (id, countyId, objectId, coordinates) {
-    this.id = id
-    this.countyId = countyId
+  constructor (objectId, federalStateId, coordinates) {
     this.objectId = objectId
+    this.federalStateId = federalStateId
     this.coordinates = coordinates
   }
 }

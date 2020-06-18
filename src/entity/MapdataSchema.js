@@ -7,19 +7,16 @@ export default new EntitySchema({
   name: 'Mapdata',
   target: Mapdata,
   columns: {
-    id: {
+    objectId: {
       primary: true,
-      type: 'int',
-      generated: true
-    },
-    countyId: {
       type: 'int'
     },
-    objectId: {
+    federalStateId: {
       type: 'int'
     },
     coordinates: {
-      type: 'int'
+      type: 'point',
+      array: true
     }
   }
 })
