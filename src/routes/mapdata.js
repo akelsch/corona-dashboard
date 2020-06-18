@@ -26,7 +26,7 @@ async function adjustMapdata (queryParams) {
     firstRun = false
   }
 
-  return mapdata.filter(data => data.federalStateId === stateId || stateId === '0')
+  return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
     .map(data => data.coordinates)
     .map(coordinates => coordinates.map(({ x, y }) => webMercator(x, y, zoom)))
     .map(coordinates => applyResolution(coordinates, resolution))

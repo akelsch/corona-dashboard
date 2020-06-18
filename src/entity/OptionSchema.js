@@ -10,7 +10,7 @@ export default new EntitySchema({
     guid: {
       primary: true,
       type: 'uuid',
-      generated: true
+      generated: 'uuid'
     },
     federalStateId: {
       type: 'int'
