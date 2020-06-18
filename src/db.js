@@ -25,6 +25,14 @@ export default typeorm.createConnection({
     optionSchema
   ]
 }).then(async (connection) => {
+  if (process.argv[2] === 'init') {
+    await initGeodata(connection)
+  }
+}).catch((error) => {
+  console.log('Error: ', error)
+})
+
+async function initGeodata (connection) {
   try {
     console.log('map-data import started')
 
@@ -32,7 +40,7 @@ export default typeorm.createConnection({
     const data = response.data
 
     const mapdataRepository = connection.getRepository(Mapdata)
-    data.features.forEach(element => {
+    for (const element of data.features) {
       const mapdata = new Mapdata()
       mapdata.objectId = element.attributes.OBJECTID
       mapdata.federalStateId = element.attributes.BL_ID
@@ -44,13 +52,11 @@ export default typeorm.createConnection({
 
       mapdata.coordinates = `{${rings}}`
 
-      mapdataRepository.save(mapdata)
-    })
+      await mapdataRepository.save(mapdata)
+    }
 
     console.log('map-data import done')
   } catch (error) {
     console.log(error.message)
   }
-}).catch((error) => {
-  console.log('Error: ', error)
-})
+}
