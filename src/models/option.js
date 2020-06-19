@@ -1,14 +1,15 @@
 import Sequelize from 'sequelize'
-import { sequelize } from './index.js'
+import connection from '../database.js'
 
 const Model = Sequelize.Model
 
-export class Option extends Model {}
+export default class Option extends Model {}
+
 Option.init({
   guid: {
     type: Sequelize.UUID,
     primaryKey: true,
-    autoIncrement: true
+    defaultValue: Sequelize.UUIDV4
   },
   federalStateId: {
     type: Sequelize.INTEGER
@@ -20,6 +21,6 @@ Option.init({
     type: Sequelize.INTEGER
   }
 }, {
-  sequelize,
+  sequelize: connection,
   modelName: 'option'
 })

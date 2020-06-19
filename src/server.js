@@ -5,8 +5,11 @@ import mapdataRouter from './routes/mapdata.js'
 import casesRouter from './routes/cases.js'
 import optionsRouter from './routes/options.js'
 
-// TODO
-import './models/index.js'
+import init from './init.js'
+
+if (process.argv[2] === 'init') {
+  init()
+}
 
 const app = express()
 const HOST = '0.0.0.0'

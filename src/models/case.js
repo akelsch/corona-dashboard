@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize'
-import { sequelize } from './index.js'
+import connection from '../database.js'
 
 const Model = Sequelize.Model
 
-export class Case extends Model {}
+export default class Case extends Model {}
+
 Case.init({
   objectId: {
     type: Sequelize.INTEGER,
@@ -34,6 +35,6 @@ Case.init({
     type: Sequelize.INTEGER
   }
 }, {
-  sequelize,
+  sequelize: connection,
   modelName: 'case'
 })

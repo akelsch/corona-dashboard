@@ -1,10 +1,8 @@
 import { douglasPeucker, webMercator } from '../algorithms.js'
-import { Mapdata } from '../models/Mapdata.js'
+import Mapdata from '../models/mapdata.js'
 
 import express from 'express'
 const router = express.Router()
-
-let mapdata = {}
 
 router.get('/', async (req, res, next) => {
   const queryParams = req.query
@@ -12,13 +10,11 @@ router.get('/', async (req, res, next) => {
   res.json(mapdata)
 })
 
-async function findAllMapdata () {
-  mapdata = await Mapdata.findAll({ raw: true })
-}
-
 async function adjustMapdata (queryParams) {
   const stateId = parseInt(queryParams.BL_ID)
   const { resolution, zoom } = queryParams
+
+  const mapdata = await Mapdata.findAll({ raw: true })
 
   return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
     .map(data => data.geometry)
@@ -38,7 +34,5 @@ function applyResolution (ring, resolution) {
       return douglasPeucker(ring, 3 / 4)
   }
 }
-
-findAllMapdata()
 
 export default router

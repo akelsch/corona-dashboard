@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize'
-import { sequelize } from './index.js'
+import connection from '../database.js'
 
 const Model = Sequelize.Model
 
-export class Mapdata extends Model {}
+export default class Mapdata extends Model {}
+
 Mapdata.init({
   objectId: {
     type: Sequelize.INTEGER,
@@ -16,6 +17,6 @@ Mapdata.init({
     type: Sequelize.GEOMETRY
   }
 }, {
-  sequelize,
+  sequelize: connection,
   modelName: 'mapdata'
 })
