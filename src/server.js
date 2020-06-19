@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 
 import mapdataRouter from './routes/mapdata.js'
 import casesRouter from './routes/cases.js'
@@ -10,6 +11,7 @@ const app = express()
 const HOST = '0.0.0.0'
 const PORT = 3000
 
+app.use(cors())
 app.use(express.static('public'))
 app.use('/mapdata', mapdataRouter)
 app.use('/cases', casesRouter)
