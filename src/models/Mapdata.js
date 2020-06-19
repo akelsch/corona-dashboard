@@ -18,5 +18,5 @@ Mapdata.init({
   }
 }, {
   sequelize: connection,
-  modelName: 'mapdata'
+  timestamps: false
 })

@@ -4,7 +4,7 @@ const { Sequelize } = sequelize
 const connection = new Sequelize('postgres', 'postgres', 'postgres', {
   host: 'localhost',
   dialect: 'postgres',
-  logging: false
+  quoteIdentifiers: false
 })
 
 export default connection

@@ -2,6 +2,8 @@ import { douglasPeucker, webMercator } from '../algorithms.js'
 import Mapdata from '../models/mapdata.js'
 
 import express from 'express'
+import sequelize from 'sequelize'
+
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
@@ -11,13 +13,13 @@ router.get('/', async (req, res, next) => {
 })
 
 async function adjustMapdata (queryParams) {
-  const stateId = parseInt(queryParams.BL_ID)
-  const { resolution, zoom } = queryParams
+  const { BL_ID: stateId, resolution, zoom } = queryParams
 
-  const mapdata = await Mapdata.findAll({ raw: true })
+  const mapdata = await Mapdata.findAll({
+    where: sequelize.literal(`federalStateId = ${stateId} OR ${stateId} = 0`)
+  })
 
-  return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
-    .map(data => data.geometry)
+  return mapdata.map(data => data.geometry)
     .flatMap(geo => geo.type === 'MultiPolygon' ? geo.coordinates.flat() : geo.coordinates)
     .map(ring => ring.map(([long, lat]) => webMercator(long, lat, zoom)))
     .map(ring => applyResolution(ring, resolution))

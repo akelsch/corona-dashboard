@@ -13,9 +13,8 @@ export default function init () {
     .then(() => {
       connection.sync()
         .then(async () => {
-          console.log('tables created')
           await initMapdata()
-          console.log('mapdata initialization done')
+          process.exit(0)
         })
     })
 }

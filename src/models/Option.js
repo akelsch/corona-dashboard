@@ -21,6 +21,5 @@ Option.init({
     type: Sequelize.INTEGER
   }
 }, {
-  sequelize: connection,
-  modelName: 'option'
+  sequelize: connection
 })

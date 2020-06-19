@@ -36,5 +36,5 @@ Case.init({
   }
 }, {
   sequelize: connection,
-  modelName: 'case'
+  timestamps: false
 })
