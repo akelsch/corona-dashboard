@@ -6,7 +6,7 @@ services:
   #   ports:
   #     - 3000:3000
   postgres:
-    image: postgres
+    image: postgis/postgis
     ports:
       - 5432:5432
     environment:
