@@ -5,7 +5,8 @@ import mapdataRouter from './routes/mapdata.js'
 import casesRouter from './routes/cases.js'
 import optionsRouter from './routes/options.js'
 
-import './db.js'
+// TODO
+import './models/index.js'
 
 const app = express()
 const HOST = '0.0.0.0'

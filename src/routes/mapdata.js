@@ -1,36 +1,34 @@
 import { douglasPeucker, webMercator } from '../algorithms.js'
-import { Mapdata } from '../model/Mapdata.js'
+import { Mapdata } from '../models/Mapdata.js'
 
 import express from 'express'
-import typeorm from 'typeorm'
 
 const router = express.Router()
-const { getConnection } = typeorm
 
-let mapdata = {}
-let firstRun = true
+const mapdata = {}
+const firstRun = true
 
 router.get('/', async (req, res, next) => {
   const queryParams = req.query
-  const mapdata = await adjustMapdata(queryParams)
-  res.json(mapdata)
+  // const mapdata = await adjustMapdata(queryParams)
+  res.json({})
 })
 
-async function adjustMapdata (queryParams) {
-  const stateId = parseInt(queryParams.BL_ID)
-  const { resolution, zoom } = queryParams
+// async function adjustMapdata (queryParams) {
+//   const stateId = parseInt(queryParams.BL_ID)
+//   const { resolution, zoom } = queryParams
 
-  const repository = getConnection().getRepository(Mapdata)
-  if (firstRun) {
-    mapdata = await repository.find()
-    firstRun = false
-  }
+//   const repository = getConnection().getRepository(Mapdata)
+//   if (firstRun) {
+//     mapdata = await repository.find()
+//     firstRun = false
+//   }
 
-  return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
-    .map(data => data.coordinates)
-    .map(coordinates => coordinates.map(({ x, y }) => webMercator(x, y, zoom)))
-    .map(coordinates => applyResolution(coordinates, resolution))
-}
+//   return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
+//     .map(data => data.coordinates)
+//     .map(coordinates => coordinates.map(({ x, y }) => webMercator(x, y, zoom)))
+//     .map(coordinates => applyResolution(coordinates, resolution))
+// }
 
 function applyResolution (ring, resolution) {
   switch (resolution) {
