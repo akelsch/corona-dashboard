@@ -1,15 +1,17 @@
 {
-  "name": "map-server",
+  "name": "dashboard-prototyp",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
+    "watch": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "private": true,
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
@@ -20,6 +22,10 @@
     "sequelize": "^5.21.13"
   },
   "devDependencies": {
+    "nodemon": "^2.0.4",
     "standard": "^14.3.4"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
