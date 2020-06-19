@@ -2,33 +2,30 @@ import { douglasPeucker, webMercator } from '../algorithms.js'
 import { Mapdata } from '../models/Mapdata.js'
 
 import express from 'express'
-
 const router = express.Router()
 
-const mapdata = {}
-const firstRun = true
+let mapdata = {}
 
 router.get('/', async (req, res, next) => {
   const queryParams = req.query
-  // const mapdata = await adjustMapdata(queryParams)
-  res.json({})
+  const mapdata = await adjustMapdata(queryParams)
+  res.json(mapdata)
 })
 
-// async function adjustMapdata (queryParams) {
-//   const stateId = parseInt(queryParams.BL_ID)
-//   const { resolution, zoom } = queryParams
+async function findAllMapdata () {
+  mapdata = await Mapdata.findAll({ raw: true })
+}
 
-//   const repository = getConnection().getRepository(Mapdata)
-//   if (firstRun) {
-//     mapdata = await repository.find()
-//     firstRun = false
-//   }
+async function adjustMapdata (queryParams) {
+  const stateId = parseInt(queryParams.BL_ID)
+  const { resolution, zoom } = queryParams
 
-//   return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
-//     .map(data => data.coordinates)
-//     .map(coordinates => coordinates.map(({ x, y }) => webMercator(x, y, zoom)))
-//     .map(coordinates => applyResolution(coordinates, resolution))
-// }
+  return mapdata.filter(data => data.federalStateId === stateId || stateId === 0)
+    .map(data => data.geometry)
+    .flatMap(geo => geo.type === 'MultiPolygon' ? geo.coordinates.flat() : geo.coordinates)
+    .map(ring => ring.map(([long, lat]) => webMercator(long, lat, zoom)))
+    .map(ring => applyResolution(ring, resolution))
+}
 
 function applyResolution (ring, resolution) {
   switch (resolution) {
@@ -41,5 +38,7 @@ function applyResolution (ring, resolution) {
       return douglasPeucker(ring, 3 / 4)
   }
 }
+
+findAllMapdata()
 
 export default router
