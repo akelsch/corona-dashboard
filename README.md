@@ -2,19 +2,35 @@
 
 ## Getting Started
 
-Running the following command will start a Node.js server and a PostgreSQL database (including pgAdmin):
+### npm
+
+#### `npm start`
+
+Will start the application using `node`.
+
+#### `npm init`
+
+Will initialize the database including all tables and mapdata (has to be run once before first start).
+
+#### `npm watch`
+
+Will start the application using `nodemon` (useful during development).
+
+### Docker
+
+Running the following command will start a PostgreSQL database including PostGIS and pgAdmin:
 
 ```sh
 docker-compose up -d
 ```
 
-To rebuild the application run:
+To run and build the application with Docker uncomment the `app` part in [`docker-compose.yml`](docker-compose.yml) and run:
 
 ```sh
 docker-compose up -d --build
 ```
 
-### Setting up pgAdmin
+#### pgAdmin
 
 1. Go to http://localhost:8000/
 2. Login using admin/nimda
