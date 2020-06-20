@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "src/server.js",
+  "main": "./lib/app.js",
   "scripts": {
-    "start": "node src/server.js",
-    "init": "node src/server.js init",
-    "watch": "nodemon src/server.js",
+    "start": "node lib/app.js",
+    "init": "node lib/app.js init",
+    "watch": "nodemon lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
