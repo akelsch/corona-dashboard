@@ -8,11 +8,11 @@
 
 Will start the application using `node`.
 
-#### `npm init`
+#### `npm run init`
 
-Will initialize the database including all tables and mapdata (has to be run once before first start).
+Will initialize the database including all tables and mapdata **(has to be run once before first start)**.
 
-#### `npm watch`
+#### `npm run watch`
 
 Will start the application using `nodemon` (useful during development).
 
