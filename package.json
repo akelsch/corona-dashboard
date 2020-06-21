@@ -6,7 +6,7 @@
   "main": "./lib/app.js",
   "scripts": {
     "start": "node --experimental-specifier-resolution=node lib/app.js",
-    "init": "node --experimental-specifier-resolution=node lib/app.js init",
+    "init": "node --experimental-specifier-resolution=node lib/init.js",
     "watch": "nodemon --experimental-specifier-resolution=node lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,9 +16,12 @@
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "node-cron": "^2.0.3",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.13"
