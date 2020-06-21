@@ -4,6 +4,10 @@
 
 ### npm
 
+#### `npm install`
+
+Will install all dependencies that are required to run the application.
+
 #### `npm start`
 
 Will start the application using `node`.
@@ -41,3 +45,12 @@ docker-compose up -d --build
     4. Password: postgres
 
 Note that the server configuration is persistent and will survive restarts.
+
+## Endpoints
+
+| Route    | Method | Query Parameters                                                     | Request Body | Success Response | Example |
+| -------- | ------ | -------------------------------------------------------------------- | ------------ | ---------------- | ------- |
+| /mapdata | GET    | stateId (1-16, 0)<br> resolution (high, medium, low)<br> zoom (0-20) |              | 200 OK           |         |
+| /cases   | GET    | stateId (1-16, 0)                                                    |              | 200 OK           |         |
+| /options | GET    | guid (UUID)                                                          |              | 200 OK           |         |
+| /options | POST   |                                                                      | TODO         | 201 Created      |         |
