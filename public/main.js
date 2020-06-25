@@ -28,6 +28,8 @@ function getFormURL () {
 }
 
 function renderSvgMap (geodata) {
+  console.log('Anz Koordinaten: ' + geodata.flat(2).length)
+
   svg.innerHTML = ''
 
   const { minX, minY } = findMinMaxCoordinates(geodata)
