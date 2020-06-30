@@ -48,9 +48,4 @@ Note that the server configuration is persistent and will survive restarts.
 
 ## Endpoints
 
-| Route    | Method | Query Parameters                                                     | Request Body | Success Response | Example |
-| -------- | ------ | -------------------------------------------------------------------- | ------------ | ---------------- | ------- |
-| /mapdata | GET    | stateId (1-16, 0)<br> resolution (high, medium, low)<br> zoom (0-20) |              | 200 OK           |         |
-| /cases   | GET    | stateId (1-16, 0)                                                    |              | 200 OK           |         |
-| /options | GET    | guid (UUID)                                                          |              | 200 OK           |         |
-| /options | POST   |                                                                      | TODO         | 201 Created      |         |
+See [Postman collection](etc/Corona%20Backend.postman_collection.json).
