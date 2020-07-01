@@ -32,44 +32,28 @@ function renderSvgMap (geodata) {
 
   svg.innerHTML = ''
 
-  const { minX, minY } = findMinMaxCoordinates(geodata)
-  const viewBox = svg.viewBox.baseVal
-  viewBox.x = minX
-  viewBox.y = minY
-
+  const g = createSVGElement('g')
   geodata.forEach(ring => {
     const coordinates = ring.reduce((acc, [x, y]) => acc + `${x},${y} `, '')
 
     const path = createSVGElement('path', {
       fill: 'none',
       stroke: 'black',
-      'stroke-width': 0.1,
+      'stroke-width': 0.8,
       d: `M ${coordinates}Z`
     })
 
-    svg.appendChild(path)
+    g.appendChild(path)
   })
-}
+  svg.appendChild(g)
 
-function findMinMaxCoordinates (geodata) {
-  return geodata.reduce((acc, ring) => {
-    // Effizienter als das Array erst zu flatten
-    ring.forEach(([x, y]) => {
-      if (x < acc.minX) {
-        acc.minX = x
-      }
-      if (x > acc.maxX) {
-        acc.maxX = x
-      }
-      if (y < acc.minY) {
-        acc.minY = y
-      }
-      if (y > acc.maxY) {
-        acc.maxY = y
-      }
-    })
-    return acc
-  }, { minX: Infinity, maxX: 0, minY: Infinity, maxY: 0 })
+  // Auf 0,0 verschieben
+  g.setAttribute('transform', `translate(${-g.getBBox().x},${-g.getBBox().y})`)
+
+  // Viewbox Zentrieren
+  const viewBox = svg.viewBox.baseVal
+  viewBox.x = (viewBox.width - g.getBBox().width) / -2
+  viewBox.y = (viewBox.height - g.getBBox().height) / -2
 }
 
 function createSVGElement (name, attributes) {
