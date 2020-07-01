@@ -27,29 +27,34 @@ function getFormURL () {
   return url
 }
 
-function renderSvgMap (geodata) {
-  console.log('Anz Koordinaten: ' + geodata.flat(2).length)
-
+function renderSvgMap (data) {
   svg.innerHTML = ''
 
-  const group = createSVGElement('g')
-  geodata.forEach(ring => {
-    const coordinates = ring.reduce((acc, [x, y]) => acc + `${x},${y} `, '')
+  const container = createSVGElement('g')
+  data.forEach(county => {
+    const g = createSVGElement('g')
+    county.coordinates.forEach(ring => {
+      if (typeof ring[0][0] !== 'number') {
+        ring = ring.flat()
+      }
 
-    const path = createSVGElement('path', {
-      fill: 'none',
-      stroke: 'black',
-      'stroke-width': 0.8,
-      d: `M ${coordinates}Z`
+      const coordinates = ring.reduce((acc, [x, y]) => acc + `${x},${y} `, '')
+      const path = createSVGElement('path', {
+        fill: 'none',
+        stroke: 'black',
+        'stroke-width': 0.8,
+        d: `M ${coordinates}Z`
+      })
+
+      g.appendChild(path)
     })
-
-    group.appendChild(path)
+    container.appendChild(g)
   })
-  svg.appendChild(group)
+  svg.appendChild(container)
 
   // Karte in die linke obere Ecke verschieben (0,0)
-  const boundingBox = group.getBBox()
-  group.setAttribute('transform', `translate(${-boundingBox.x},${-boundingBox.y})`)
+  const boundingBox = container.getBBox()
+  container.setAttribute('transform', `translate(${-boundingBox.x},${-boundingBox.y})`)
 
   // Viewbox zentrieren
   const viewBox = svg.viewBox.baseVal
