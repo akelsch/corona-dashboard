@@ -32,7 +32,7 @@ function renderSvgMap (geodata) {
 
   svg.innerHTML = ''
 
-  const g = createSVGElement('g')
+  const group = createSVGElement('g')
   geodata.forEach(ring => {
     const coordinates = ring.reduce((acc, [x, y]) => acc + `${x},${y} `, '')
 
@@ -43,17 +43,18 @@ function renderSvgMap (geodata) {
       d: `M ${coordinates}Z`
     })
 
-    g.appendChild(path)
+    group.appendChild(path)
   })
-  svg.appendChild(g)
+  svg.appendChild(group)
 
-  // Auf 0,0 verschieben
-  g.setAttribute('transform', `translate(${-g.getBBox().x},${-g.getBBox().y})`)
+  // Karte in die linke obere Ecke verschieben (0,0)
+  const boundingBox = group.getBBox()
+  group.setAttribute('transform', `translate(${-boundingBox.x},${-boundingBox.y})`)
 
-  // Viewbox Zentrieren
+  // Viewbox zentrieren
   const viewBox = svg.viewBox.baseVal
-  viewBox.x = (viewBox.width - g.getBBox().width) / -2
-  viewBox.y = (viewBox.height - g.getBBox().height) / -2
+  viewBox.x = (viewBox.width - boundingBox.width) / -2
+  viewBox.y = (viewBox.height - boundingBox.height) / -2
 }
 
 function createSVGElement (name, attributes) {
