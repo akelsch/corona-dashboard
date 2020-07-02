@@ -25,7 +25,7 @@ loadModules(modules).then(([Basemap, Map, GeoJSONLayer, MapView]) => {
   })
 
   const geoJSONLayer = new GeoJSONLayer({
-    url: 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID,BL_ID&outSR=4326&f=geojson',
+    url: 'http://127.0.0.1:3000/mapdata',
     copyright: 'Robert Koch-Institut (RKI)'
   })
 
