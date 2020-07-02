@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kartenserver</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/css/main.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,7 +16,7 @@
     <div>
       <label for="stateId">Bundesland:</label>
       <select name="stateId" id="stateId">
-        <option value="0">alle</option>
+        <option value="0" selected>alle</option>
         <option value="8">Baden-Württemberg</option>
         <option value="9">Bayern</option>
         <option value="11">Berlin</option>
@@ -27,7 +28,7 @@
         <option value="3">Niedersachsen</option>
         <option value="5">Nordrhein-Westfalen</option>
         <option value="7">Rheinland-Pfalz</option>
-        <option value="10" selected>Saarland</option>
+        <option value="10">Saarland</option>
         <option value="15">Sachsen-Anhalt</option>
         <option value="14">Sachsen</option>
         <option value="1">Schleswig-Holstein</option>
@@ -46,7 +47,7 @@
 
     <div>
       <label for="zoom">Zoomlevel:</label>
-      <input type="number" name="zoom" id="zoom" value="13" min="0" max="20">
+      <input type="number" name="zoom" id="zoom" value="6" min="0" max="20">
     </div>
 
     <button type="submit">Absenden</button>
@@ -56,7 +57,7 @@
     <p>Generierte URL: <a href="#" target="_blank" rel="noopener noreferrer" id="form-url"></a></p>
   </div>
 
-  <svg height="800" viewBox="0 0 1024 1024" id="map"></svg>
+  <div id="map"></div>
 
   <script type="module" src="main.js"></script>
 </body>

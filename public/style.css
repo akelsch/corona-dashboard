@@ -5,3 +5,8 @@ body {
 svg {
   border: 1px solid black;
 }
+
+#map {
+  height: 800px;
+  width: 800px;
+}
