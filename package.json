@@ -1,5 +1,5 @@
 {
-  "name": "dashboard-prototyp",
+  "name": "corona-dashboard",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -23,7 +23,7 @@
     "node-cron": "^2.0.3",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.2.3"
+    "sequelize": "^6.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
