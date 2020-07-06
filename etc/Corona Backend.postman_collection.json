@@ -1,17 +1,17 @@
 {
 	"info": {
-		"_postman_id": "7b4c9413-a28a-4a57-b488-4f5779d65def",
+		"_postman_id": "66612f4f-154b-4672-b2c1-64a3d0f2b5bf",
 		"name": "Corona Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Get Mapdata",
+			"name": "Get All Mapdata",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/mapdata?stateId=10&resolution=high&zoom=6",
+					"raw": "{{host}}/mapdata?resolution=high&zoom=6",
 					"host": [
 						"{{host}}"
 					],
@@ -19,11 +19,6 @@
 						"mapdata"
 					],
 					"query": [
-						{
-							"key": "stateId",
-							"value": "10",
-							"description": "German state number (1-16, 0 for all)"
-						},
 						{
 							"key": "resolution",
 							"value": "high",
@@ -40,24 +35,118 @@
 			"response": []
 		},
 		{
-			"name": "Get Cases",
+			"name": "Get Mapdata for State ID",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/cases?stateId=10",
+					"raw": "{{host}}/mapdata/10?resolution=high&zoom=6",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"mapdata",
+						"10"
+					],
+					"query": [
+						{
+							"key": "resolution",
+							"value": "high",
+							"description": "Simplification rate (high, medium or low)"
+						},
+						{
+							"key": "zoom",
+							"value": "6",
+							"description": "Web Mercator zoom level (0-20)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Cases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cases",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"cases"
-					],
-					"query": [
-						{
-							"key": "stateId",
-							"value": "10",
-							"description": "German state number (1-16, 0 for all)"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Cases (Saarland)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cases/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cases",
+								"10"
+							]
 						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1789"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6fd-TpJgqlSKviGukF2ZdOQ1W7GSyyc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 Jun 2020 13:04:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 319,\n        \"deathRate\": 8.96825396825397,\n        \"cases\": 1260,\n        \"deaths\": 113,\n        \"casesPer100k\": 382.156332269766,\n        \"state\": \"Saarland\",\n        \"stateId\": 10,\n        \"county\": \"LK Stadtverband Saarbrücken\",\n        \"lastUpdate\": \"30.06.2020, 00:00 Uhr\",\n        \"cases7Per100k\": 0.303298676404576,\n        \"createdAt\": \"2020-06-30T12:40:17.301Z\",\n        \"updatedAt\": \"2020-06-30T12:40:17.301Z\"\n    },\n    {\n        \"id\": 320,\n        \"deathRate\": 0.917431192660551,\n        \"cases\": 218,\n        \"deaths\": 2,\n        \"casesPer100k\": 210.901069984328,\n        \"state\": \"Saarland\",\n        \"stateId\": 10,\n        \"county\": \"LK Merzig-Wadern\",\n        \"lastUpdate\": \"30.06.2020, 00:00 Uhr\",\n        \"cases7Per100k\": 1.93487220169108,\n        \"createdAt\": \"2020-06-30T12:40:17.303Z\",\n        \"updatedAt\": \"2020-06-30T12:40:17.303Z\"\n    },\n    {\n        \"id\": 321,\n        \"deathRate\": 4.04411764705882,\n        \"cases\": 272,\n        \"deaths\": 11,\n        \"casesPer100k\": 205.739527706761,\n        \"state\": \"Saarland\",\n        \"stateId\": 10,\n        \"county\": \"LK Neunkirchen\",\n        \"lastUpdate\": \"30.06.2020, 00:00 Uhr\",\n        \"cases7Per100k\": 0,\n        \"createdAt\": \"2020-06-30T12:40:17.304Z\",\n        \"updatedAt\": \"2020-06-30T12:40:17.304Z\"\n    },\n    {\n        \"id\": 322,\n        \"deathRate\": 4.29338103756708,\n        \"cases\": 559,\n        \"deaths\": 24,\n        \"casesPer100k\": 286.371483752645,\n        \"state\": \"Saarland\",\n        \"stateId\": 10,\n        \"county\": \"LK Saarlouis\",\n        \"lastUpdate\": \"30.06.2020, 00:00 Uhr\",\n        \"cases7Per100k\": 1.53687737255444,\n        \"createdAt\": \"2020-06-30T12:40:17.306Z\",\n        \"updatedAt\": \"2020-06-30T12:40:17.306Z\"\n    },\n    {\n        \"id\": 323,\n        \"deathRate\": 5.5045871559633,\n        \"cases\": 327,\n        \"deaths\": 18,\n        \"casesPer100k\": 229.262923207437,\n        \"state\": \"Saarland\",\n        \"stateId\": 10,\n        \"county\": \"LK Saar-Pfalz-Kreis\",\n        \"lastUpdate\": \"30.06.2020, 00:00 Uhr\",\n        \"cases7Per100k\": 0,\n        \"createdAt\": \"2020-06-30T12:40:17.309Z\",\n        \"updatedAt\": \"2020-06-30T12:40:17.309Z\"\n    },\n    {\n        \"id\": 324,\n        \"deathRate\": 2.94117647058824,\n        \"cases\": 170,\n        \"deaths\": 5,\n        \"casesPer100k\": 194.514685858782,\n        \"state\": \"Saarland\",\n        \"stateId\": 10,\n        \"county\": \"LK Sankt Wendel\",\n        \"lastUpdate\": \"30.06.2020, 00:00 Uhr\",\n        \"cases7Per100k\": 0,\n        \"createdAt\": \"2020-06-30T12:40:17.311Z\",\n        \"updatedAt\": \"2020-06-30T12:40:17.311Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Cases for State ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cases/10",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cases",
+						"10"
 					]
 				}
 			},
@@ -128,7 +217,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "23f268bd-e98b-4429-81e0-3bd11f382ad5",
+						"id": "1bbe59b9-c5eb-465d-a5b1-96a116746695",
 						"exec": [
 							"pm.test(\"Extract GUID\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -231,19 +320,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/options?guid={{lastGuid}}",
+					"raw": "{{host}}/options/{{lastGuid}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"options"
-					],
-					"query": [
-						{
-							"key": "guid",
-							"value": "{{lastGuid}}",
-							"description": "UUID e.g. 30207df1-ab7b-4dc8-889d-2260307d5541"
-						}
+						"options",
+						"{{lastGuid}}"
 					]
 				}
 			},
@@ -254,19 +337,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/options?guid={{lastGuid}}",
+							"raw": "{{host}}/options/{{lastGuid}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"options"
-							],
-							"query": [
-								{
-									"key": "guid",
-									"value": "{{lastGuid}}",
-									"description": "UUID e.g. 30207df1-ab7b-4dc8-889d-2260307d5541"
-								}
+								"options",
+								"{{lastGuid}}"
 							]
 						}
 					},
@@ -400,7 +477,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "89716081-fbf4-4a3f-bdf3-aa59a6bdee00",
+				"id": "1ebe15f3-6cc6-4a3a-9698-bc0141ec85d1",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -410,7 +487,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e3ac0cd3-cf7d-456c-845c-f7b71d2f9f1e",
+				"id": "84a1ce2b-afad-448a-b0a1-4c203e5c216d",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -420,12 +497,12 @@
 	],
 	"variable": [
 		{
-			"id": "77e7c4ed-88c3-4095-807a-46cc60fe5ce5",
+			"id": "3dfb58df-e044-4c14-a22c-ed2226212bfb",
 			"key": "host",
 			"value": "localhost:3000"
 		},
 		{
-			"id": "2a2ec5f5-7729-4fd1-9d1f-f1531544a60f",
+			"id": "f7d900a7-2625-49ce-8b15-d236b6ad275c",
 			"key": "lastGuid",
 			"value": ""
 		}
