@@ -21,9 +21,11 @@ form.onsubmit = event => {
 form.dispatchEvent(new Event('change'))
 
 function getFormURL () {
-  const url = new URL(form.action)
-  const queryParams = new URLSearchParams(new FormData(form))
-  url.search = queryParams
+  const params = new URLSearchParams(new FormData(form))
+  const stateId = params.get('stateId')
+  const url = stateId === '0' ? new URL(form.action) : new URL(`${form.action}/${stateId}`)
+  params.delete('stateId')
+  url.search = params
   return url
 }
 
