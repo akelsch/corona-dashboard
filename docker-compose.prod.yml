@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  app:
+    build: .
+    command: sh -c "npm run init && npm start"
+    ports:
+      - 3000:3000
+    environment:
+      PG_HOST: postgres

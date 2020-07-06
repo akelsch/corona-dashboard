@@ -1,6 +1,20 @@
-# dashboard-prototyp
+# corona-dashboard
+
+Project as part of the web applications module at htw saar. It contains a backend application built with Express serving COVID-19 case data provided by RKI.
+
+## Endpoints
+
+See [Postman collection](etc/Corona%20Backend.postman_collection.json).
 
 ## Getting Started
+
+### TLDR
+
+1. `git clone`
+2. `npm install`
+3. `docker-compose up -d`
+4. `npm run init`
+5. `npm start`
 
 ### npm
 
@@ -28,24 +42,22 @@ Running the following command will start a PostgreSQL database including PostGIS
 docker-compose up -d
 ```
 
-To run and build the application with Docker uncomment the `app` part in [`docker-compose.yml`](docker-compose.yml) and run:
+If you want to dockerize the application itself as well, add [`docker-compose.prod.yml`](docker-compose.prod.yml) to your list of compose files:
 
 ```sh
-docker-compose up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 ```
 
 #### pgAdmin
 
-1. Go to http://localhost:8000/
-2. Login using admin/nimda
+1. Open http://localhost:8000/
+2. Login
+    - Username: admin
+    - Password: nimda
 3. Create a new server
-    1. Host: postgres
-    2. Port: 5432
-    3. Username: postgres
-    4. Password: postgres
+    - Host: postgres
+    - Port: 5432
+    - Username: postgres
+    - Password: mysecretpassword
 
 Note that the server configuration is persistent and will survive restarts.
-
-## Endpoints
-
-See [Postman collection](etc/Corona%20Backend.postman_collection.json).
