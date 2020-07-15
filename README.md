@@ -61,3 +61,14 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
     - Password: mysecretpassword
 
 Note that the server configuration is persistent and will survive restarts.
+
+## Troubleshooting
+
+It is not uncommon that something goes wrong with the Docker volume of PostgreSQL so it can be helpful to recreate it from scratch (especially during development).
+To do so, run the following command:
+
+```sh
+docker volume rm corona-dashboard_pgdata
+```
+
+After that, run Docker Compose and the init script to recreate all tables and data.
