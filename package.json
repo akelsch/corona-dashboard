@@ -6,7 +6,7 @@
   "main": "./lib/app.js",
   "scripts": {
     "start": "node --experimental-specifier-resolution=node lib/app.js",
-    "init": "node --experimental-specifier-resolution=node lib/database-init.js",
+    "init": "node --experimental-specifier-resolution=node init.js",
     "watch": "nodemon --experimental-specifier-resolution=node lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

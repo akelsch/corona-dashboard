@@ -1,7 +1,7 @@
-import db from './database'
-import * as rki from './utils/rki'
-import { CountyCase, CountyGeometry, StateCase, StateGeometry } from './models'
-import { updateNormalizedValues, convertGermanDate } from './scheduler'
+import db from './lib/database'
+import * as rki from './lib/utils/rki'
+import { CountyCase, CountyGeometry, StateCase, StateGeometry } from './lib/models'
+import { updateNormalizedValues, convertGermanDate } from './lib/scheduler'
 
 db.drop()
   .then(() => {
